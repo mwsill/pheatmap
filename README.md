@@ -4,8 +4,14 @@ pheatmap
 A package for drawing pretty heatmaps in R. The ordinary heatmap function in R has several drawbacks when it comes to producing publication quality heatmaps. It is hard to produce pictures with consistent text, cell and overall sizes and shapes. The function pheatmap tries to alleviate the problems by offering more fine grained control over heatmap dimensions and appearance.
 
 ```{r}
-library(devtools)                  
+library(devtools)         
 install_github('mwsill/pheatmap')
+
+# TODO imports via NAMESPACE do not work
+library(RColorBrewer)
+library(grid)
+library(gtable)
+library(scales)
 
 # Create test matrix
 test = matrix(rnorm(200), 20, 10)
@@ -27,7 +33,7 @@ annotation_row = data.frame(
 rownames(annotation_row) = paste("Gene", 1:20, sep = "")
 
 #perform external column clustering by hclust
-colclus <- hclust(dist(t(test)))
+colclus <- hclust(dist(t(test)),method='ward.D2')
 
 # Display row and color annotations
 pheatmap(test, annotation_col = annotation_col,cols_dendro=colclus)
