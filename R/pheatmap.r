@@ -876,7 +876,9 @@ pheatmap = function(mat, color = colorRampPalette(rev(brewer.pal(n = 7, name = "
     
     # Do clustering
     if(cluster_rows){
-        tree_row = cluster_mat(mat, distance = clustering_distance_rows, method = clustering_method)
+        #tree_row = cluster_mat(mat, distance = clustering_distance_rows, method = clustering_method)
+        if(is.null(rows_dendro)) {tree_row = cluster_mat(t(mat), distance = clustering_distance_rows, method = clustering_method)}
+        else{tree_row=rows_dendro}
         mat = mat[tree_row$order, , drop = FALSE]
         fmat = fmat[tree_row$order, , drop = FALSE]
         labels_row = labels_row[tree_row$order]
