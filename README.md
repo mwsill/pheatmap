@@ -6,6 +6,7 @@ A package for drawing pretty heatmaps in R. The ordinary heatmap function in R h
 ```{r}
 library(devtools)         
 install_github('mwsill/pheatmap')
+library(pheatmap)
 
 # TODO imports via NAMESPACE do not work
 library(RColorBrewer)
